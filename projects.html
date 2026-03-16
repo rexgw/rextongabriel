@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Rexton Winarya</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #fff; color: #111; line-height: 1.6; font-size: 15px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.92); backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e8e8e8;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 60px;
+  }
+  .nav-name { font-weight: 600; font-size: 15px; color: #111; text-decoration: none; }
+  .nav-links { display: flex; gap: 8px; align-items: center; }
+  .nav-links a { font-size: 13px; font-weight: 500; color: #555; text-decoration: none; padding: 6px 14px; border-radius: 6px; transition: background 0.15s, color 0.15s; }
+  .nav-links a:hover { background: #f0f0f0; color: #111; }
+  .nav-links a.btn { background: #111; color: #fff; }
+  .nav-links a.btn:hover { background: #333; }
+
+  .ticker-wrap { overflow: hidden; background: #f7f7f7; border-bottom: 1px solid #e8e8e8; padding: 12px 0; }
+  .ticker-track { display: flex; gap: 64px; width: max-content; animation: ticker 28s linear infinite; }
+  .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .ticker-item { display: flex; align-items: center; gap: 10px; white-space: nowrap; font-size: 12px; font-weight: 500; color: #888; letter-spacing: 0.05em; text-transform: uppercase; }
+  .ticker-dot { width: 5px; height: 5px; border-radius: 50%; background: #ccc; flex-shrink: 0; }
+
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 48px; }
+  .divider { max-width: 900px; margin: 0 auto; padding: 0 48px; }
+  .divider hr { border: none; border-top: 1px solid #e8e8e8; }
+
+  .section { max-width: 900px; margin: 0 auto; padding: 56px 48px; }
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #999; margin-bottom: 12px; }
+  .section h2 { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 32px; color: #111; line-height: 1.3; }
+
+  footer { border-top: 1px solid #e8e8e8; padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto; }
+  .footer-copy { font-size: 13px; color: #bbb; }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 13px; color: #888; text-decoration: none; transition: color 0.15s; }
+  .footer-links a:hover { color: #111; }
+
+  .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 700px) {
+    nav { padding: 0 20px; }
+    .section { padding: 40px 24px; }
+    .divider { padding: 0 24px; }
+    footer { flex-direction: column; gap: 12px; padding: 24px; text-align: center; }
+  }
+
+
+  .back-link { max-width: 900px; margin: 0 auto; padding: 28px 48px 0; }
+  .back-link a { font-size: 13px; color: #888; text-decoration: none; font-weight: 500; transition: color 0.15s; }
+  .back-link a:hover { color: #111; }
+
+  .project-block { border: 1px solid #e8e8e8; border-radius: 14px; overflow: hidden; margin-bottom: 20px; }
+  .project-banner { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; font-size: 64px; }
+  .project-banner.orange { background: linear-gradient(135deg, #f5ede8, #ebd4c8); color: #c4978a; }
+  .project-content { padding: 28px 32px; }
+  .project-meta { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; flex-wrap: wrap; }
+  .project-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #2563eb; }
+  .project-date { font-size: 12px; color: #bbb; }
+  .project-title { font-size: 22px; font-weight: 700; color: #111; margin-bottom: 16px; letter-spacing: -0.01em; }
+  .project-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .project-bullets li { font-size: 14px; color: #444; line-height: 1.7; padding-left: 16px; position: relative; }
+  .project-bullets li::before { content: '→'; position: absolute; left: 0; color: #bbb; font-size: 11px; top: 3px; }
+
+  @media (max-width: 700px) {
+    .back-link { padding: 20px 24px 0; }
+    .project-content { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-name">Rexton Winarya</a>
+  <div class="nav-links">
+    <a href="work.html">Experience</a>
+    <a href="projects.html">Projects</a>
+    <a href="skills.html">Skills</a>
+    <a href="mailto:rextongabriel28@gmail.com" class="btn">Contact</a>
+  </div>
+</nav>
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="ticker-dot"></span>Tesla · Austin TX</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Transportation Investment Corp.</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Dorigo Systems Ltd.</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>University of British Columbia</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Manufacturing Engineering</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Expected May 2027</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Tesla · Austin TX</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Transportation Investment Corp.</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Dorigo Systems Ltd.</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>University of British Columbia</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Manufacturing Engineering</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Expected May 2027</div>
+  </div>
+</div>
+
+<div class="back-link"><a href="index.html">← Back to Home</a></div>
+
+<div class="section fade-in" id="projects">
+  <div class="section-label">Technical Projects</div>
+  <h2>Applying engineering principles to complex real-world challenges.</h2>
+
+  <div class="project-block" id="cam">
+    <div class="project-banner orange">⚙️</div>
+    <div class="project-content">
+      <div class="project-meta">
+        <span class="project-tag">CNC Machining · Siemens NX CAM</span>
+        <span class="project-date">Sep 2025 – Dec 2025</span>
+      </div>
+      <div class="project-title">CAM MacBook Chassis Project</div>
+      <ul class="project-bullets">
+        <li>Programmed CNC toolpaths in Siemens NX CAM to machine a MacBook chassis from aluminum billet, generating 2,500+ lines of G-code across 15 operations, achieving ±0.05mm dimensional tolerances and surface finish requirements.</li>
+        <li>Designed a custom fixturing system with 3 modular clamp components to secure the workpiece through a 4-setup machining sequence, reducing setup time by 40% and ensuring &lt;0.02mm deflection during high-speed cutting operations.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-copy">© 2026 Rexton Gabriel Winarya</div>
+  <div class="footer-links">
+    <a href="mailto:rextongabriel28@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/rgwinarya" target="_blank">LinkedIn</a>
+    <a href="tel:+12368662770">+1 (236) 866-2770</a>
+  </div>
+</footer>
+<script>
+  const faders = document.querySelectorAll('.fade-in');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  faders.forEach(f => obs.observe(f));
+</script>
+</body>
+</html>
