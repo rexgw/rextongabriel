@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rexton Gabriel Winarya — Manufacturing Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0e0e;
+    --surface: #161616;
+    --border: #2a2a2a;
+    --accent: #e8c547;
+    --accent2: #4fc4cf;
+    --text: #e8e4dc;
+    --muted: #6b6b6b;
+    --dim: #3a3a3a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ── SIDE NAV ── */
+  nav {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 60px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    z-index: 100;
+    background: var(--bg);
+  }
+
+  nav a {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    padding: 8px 0;
+  }
+
+  nav a:hover { color: var(--accent); }
+
+  /* ── MAIN LAYOUT ── */
+  main {
+    margin-left: 60px;
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-right: 1px solid var(--border);
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  .hero-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 8vw, 120px);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    margin-bottom: 32px;
+  }
+
+  .hero-name span {
+    display: block;
+    color: var(--accent);
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 380px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  .contact-strip {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .contact-strip a {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .contact-strip a::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background: var(--dim);
+    transition: width 0.3s, background 0.2s;
+  }
+
+  .contact-strip a:hover { color: var(--accent); }
+  .contact-strip a:hover::before { width: 40px; background: var(--accent); }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.5;
+  }
+
+  .hero-badge {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .badge-circle {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    background: var(--surface);
+  }
+
+  .badge-circle::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    border: 1px dashed var(--dim);
+    animation: spin 20s linear infinite;
+  }
+
+  .badge-circle::after {
+    content: '';
+    position: absolute;
+    inset: -40px;
+    border-radius: 50%;
+    border: 1px dashed var(--dim);
+    opacity: 0.4;
+    animation: spin 35s linear infinite reverse;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .badge-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .badge-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .badge-sub {
+    font-size: 13px;
+    color: var(--dim);
+  }
+
+  /* ── SECTION COMMON ── */
+  section {
+    border-bottom: 1px solid var(--border);
+    padding: 80px 60px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 56px;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    border-top: 1px solid var(--border);
+    padding: 40px 0;
+    gap: 48px;
+    transition: background 0.2s;
+  }
+
+  .exp-item:last-child { border-bottom: 1px solid var(--border); }
+
+  .exp-meta { padding-top: 4px; }
+
+  .exp-company {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 6px;
+  }
+
+  .exp-role {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .exp-loc {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    margin-top: 4px;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .exp-bullets li {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 11px;
+    top: 2px;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-block {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .edu-institution {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 0.05em;
+    line-height: 1.1;
+    color: var(--text);
+  }
+
+  .edu-degree {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .edu-detail {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .skill-group {
+    background: var(--surface);
+    padding: 36px;
+  }
+
+  .skill-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    transition: border-color 0.2s, color 0.2s;
+    cursor: default;
+  }
+
+  .tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ── PROJECTS ── */
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+
+  .project-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 100px;
+    color: var(--dim);
+    position: absolute;
+    top: 20px; right: 40px;
+    line-height: 1;
+    opacity: 0.4;
+  }
+
+  .project-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .project-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent2);
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+  }
+
+  .project-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .project-bullets li {
+    font-size: 14px;
+    color: var(--muted);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.65;
+  }
+
+  .project-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent2);
+    font-size: 11px;
+    top: 2px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    color: var(--dim);
+  }
+
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { display: none; }
+    main { margin-left: 0; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .exp-item, .edu-block { grid-template-columns: 1fr; gap: 20px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    section { padding: 60px 32px; }
+    .hero-left { padding: 60px 32px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#experience">Experience</a>
+  <a href="#education">Education</a>
+  <a href="#projects">Projects</a>
+  <a href="#skills">Skills</a>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section id="hero" style="padding:0; border:none;">
+    <div class="hero-left">
+      <p class="hero-tag">Manufacturing Engineering Student · UBC · Expected May 2027</p>
+      <h1 class="hero-name">
+        Rexton<br>
+        Gabriel<br>
+        <span>Winarya</span>
+      </h1>
+      <p class="hero-desc">
+        Manufacturing engineer with hands-on experience at Tesla, a $6B infrastructure project, and electronics manufacturing — bridging design, production, and project controls.
+      </p>
+      <div class="contact-strip">
+        <a href="mailto:rextongabriel28@gmail.com">rextongabriel28@gmail.com</a>
+        <a href="tel:+12368662770">+1 (236) 866-2770</a>
+        <a href="https://linkedin.com/in/rgwinarya" target="_blank">linkedin.com/in/rgwinarya</a>
+        <a href="#">Vancouver, BC</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-grid"></div>
+      <div class="hero-badge">
+        <div class="badge-circle">
+          <div class="badge-year">2027</div>
+          <div class="badge-label">Graduation</div>
+          <div class="badge-sub">BASc · Mfg. Eng.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Experience</h2>
+    </div>
+
+    <div class="exp-list">
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-company">Tesla</div>
+          <div class="exp-role">Technical Project Management Intern</div>
+          <div class="exp-date">Jan 2026 – Present</div>
+          <div class="exp-loc">Austin, TX</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Coordinated design reviews for multi-million dollar mixing subsystem projects, gathering feedback from 30+ stakeholders across manufacturing engineering, supply chain, and factory design teams.</li>
+          <li>Managed project schedules in Microsoft Project — 85+ tasks across design, procurement, and commissioning phases, coordinating 6 engineering teams to achieve 90% on-time milestone completion.</li>
+          <li>Optimized mixing subsystem interfaces by analyzing material flow and factory layout constraints, reducing equipment density by 50%.</li>
+          <li>Managed 2 major scope changes, delivering revised specifications within 2-week turnaround windows.</li>
+          <li>Utilized Navisworks Simulate for 3D layout reviews, eliminating 3 critical design conflicts before fabrication.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-company">Transportation Investment Corp.</div>
+          <div class="exp-role">Project Controls Coordinator / Scheduler</div>
+          <div class="exp-date">Jan 2025 – Aug 2025</div>
+          <div class="exp-loc">Vancouver, BC</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Developed an Excel tracker for a $6B SkyTrain expansion project, improving earned and actual value comparisons and enabling data-driven decision making in monthly reviews.</li>
+          <li>Built a Power BI budget tracker for a $4.2B Tunnel replacement project — automated financial reporting, cutting reporting time by 50%.</li>
+          <li>Analyzed and compared schedules in Primavera 6, identified variances, and collaborated with contractors to resolve discrepancies and reduce delay risks.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-company">Dorigo Systems Ltd.</div>
+          <div class="exp-role">Manufacturing / Process Engineer</div>
+          <div class="exp-date">May 2024 – Dec 2024</div>
+          <div class="exp-loc">Vancouver, BC</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Leveraged FactoryLogix to design and implement customized process flows aligned with ISO 13485 standards and lean/5S principles, achieving a 5% increase in production efficiency.</li>
+          <li>Created a labelling system that reduced manual labour errors by 20% and improved PCB traceability during production.</li>
+          <li>Conducted Process FMEA for PCB assembly lines, reducing quality escapes by 5% through targeted corrective actions.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Education</h2>
+    </div>
+    <div class="edu-block reveal">
+      <div class="edu-institution">University of British Columbia</div>
+      <div>
+        <div class="edu-degree">Bachelor of Applied Science — Manufacturing Engineering</div>
+        <div class="edu-detail" style="margin-bottom:6px;">Sep 2021 – May 2027 (Expected) · Vancouver, BC</div>
+        <div class="edu-detail">Co-op program · 3 industry placements completed</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Projects</h2>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-number">01</div>
+      <div class="project-name">CAM MacBook Chassis</div>
+      <div class="project-date">Sep 2025 – Dec 2025</div>
+      <ul class="project-bullets">
+        <li>Programmed CNC toolpaths in Siemens NX CAM to machine a MacBook chassis from aluminum billet — 2,500+ lines of G-code across 15 operations, achieving ±0.05mm dimensional tolerances.</li>
+        <li>Designed a custom fixturing system with 3 modular clamp components across a 4-setup machining sequence, reducing setup time by 40% and ensuring &lt;0.02mm deflection during high-speed cutting.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Skills</h2>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-group">
+        <div class="skill-group-title">Manufacturing</div>
+        <div class="skill-tags">
+          <span class="tag">Machining</span>
+          <span class="tag">Soldering</span>
+          <span class="tag">Composite Layup</span>
+          <span class="tag">Thermoforming</span>
+          <span class="tag">LEAN</span>
+          <span class="tag">3D Printing</span>
+          <span class="tag">5S</span>
+          <span class="tag">Process FMEA</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Software</div>
+        <div class="skill-tags">
+          <span class="tag">SolidWorks</span>
+          <span class="tag">NX Siemens</span>
+          <span class="tag">NavisWorks</span>
+          <span class="tag">AutoCAD 360</span>
+          <span class="tag">ANSYS</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Primavera 6</span>
+          <span class="tag">FactoryLogix</span>
+          <span class="tag">RoboDK</span>
+          <span class="tag">MS Project</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Programming</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">C++</span>
+          <span class="tag">Java</span>
+          <span class="tag">MATLAB</span>
+          <span class="tag">VBA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-name">Rexton Gabriel Winarya</div>
+    <div class="footer-copy">Manufacturing Engineering · UBC · 2027</div>
+  </footer>
+
+</main>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => io.observe(r));
+
+  // Active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  const sio = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.style.color = '');
+        const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
+        if (active) active.style.color = 'var(--accent)';
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => sio.observe(s));
+</script>
+
+</body>
+</html>
