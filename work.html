@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work Experience — Rexton Winarya</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #fff; color: #111; line-height: 1.6; font-size: 15px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.92); backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e8e8e8;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 60px;
+  }
+  .nav-name { font-weight: 600; font-size: 15px; color: #111; text-decoration: none; }
+  .nav-links { display: flex; gap: 8px; align-items: center; }
+  .nav-links a { font-size: 13px; font-weight: 500; color: #555; text-decoration: none; padding: 6px 14px; border-radius: 6px; transition: background 0.15s, color 0.15s; }
+  .nav-links a:hover { background: #f0f0f0; color: #111; }
+  .nav-links a.btn { background: #111; color: #fff; }
+  .nav-links a.btn:hover { background: #333; }
+
+  .ticker-wrap { overflow: hidden; background: #f7f7f7; border-bottom: 1px solid #e8e8e8; padding: 12px 0; }
+  .ticker-track { display: flex; gap: 64px; width: max-content; animation: ticker 28s linear infinite; }
+  .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .ticker-item { display: flex; align-items: center; gap: 10px; white-space: nowrap; font-size: 12px; font-weight: 500; color: #888; letter-spacing: 0.05em; text-transform: uppercase; }
+  .ticker-dot { width: 5px; height: 5px; border-radius: 50%; background: #ccc; flex-shrink: 0; }
+
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 48px; }
+  .divider { max-width: 900px; margin: 0 auto; padding: 0 48px; }
+  .divider hr { border: none; border-top: 1px solid #e8e8e8; }
+
+  .section { max-width: 900px; margin: 0 auto; padding: 56px 48px; }
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #999; margin-bottom: 12px; }
+  .section h2 { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 32px; color: #111; line-height: 1.3; }
+
+  footer { border-top: 1px solid #e8e8e8; padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto; }
+  .footer-copy { font-size: 13px; color: #bbb; }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 13px; color: #888; text-decoration: none; transition: color 0.15s; }
+  .footer-links a:hover { color: #111; }
+
+  .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 700px) {
+    nav { padding: 0 20px; }
+    .section { padding: 40px 24px; }
+    .divider { padding: 0 24px; }
+    footer { flex-direction: column; gap: 12px; padding: 24px; text-align: center; }
+  }
+
+  .back-link { max-width: 900px; margin: 0 auto; padding: 28px 48px 0; }
+  .back-link a { font-size: 13px; color: #888; text-decoration: none; font-weight: 500; transition: color 0.15s; }
+  .back-link a:hover { color: #111; }
+
+  .exp-card { border: 1px solid #e8e8e8; border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: box-shadow 0.2s; }
+  .exp-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+  .exp-header { display: flex; align-items: center; padding: 18px 22px; cursor: pointer; gap: 14px; user-select: none; }
+  .exp-logo { width: 40px; height: 40px; border-radius: 8px; background: #f4f4f4; border: 1px solid #e8e8e8; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .exp-info { flex: 1; min-width: 0; }
+  .exp-info .company { font-size: 15px; font-weight: 600; color: #111; }
+  .exp-info .role { font-size: 13px; color: #666; margin-top: 1px; }
+  .exp-right { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; flex-shrink: 0; }
+  .exp-date { font-size: 12px; color: #999; font-weight: 500; }
+  .exp-loc { font-size: 12px; color: #bbb; }
+  .exp-chevron { font-size: 11px; color: #ccc; margin-left: 10px; transition: transform 0.25s; flex-shrink: 0; }
+  .exp-card.open .exp-chevron { transform: rotate(180deg); }
+  .exp-body { display: none; padding: 0 22px 22px; border-top: 1px solid #f0f0f0; }
+  .exp-card.open .exp-body { display: block; }
+  .exp-body ul { list-style: none; padding-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .exp-body ul li { font-size: 14px; color: #444; line-height: 1.7; padding-left: 16px; position: relative; }
+  .exp-body ul li::before { content: '→'; position: absolute; left: 0; color: #bbb; font-size: 11px; top: 3px; }
+
+  .edu-card { border: 1px solid #e8e8e8; border-radius: 12px; padding: 22px 24px; display: flex; align-items: flex-start; gap: 18px; }
+  .edu-logo { width: 48px; height: 48px; border-radius: 10px; background: #f4f4f4; border: 1px solid #e8e8e8; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .edu-school { font-size: 15px; font-weight: 600; color: #111; }
+  .edu-degree { font-size: 13px; color: #555; margin-top: 3px; }
+  .edu-dates { font-size: 12px; color: #999; margin-top: 4px; }
+  .edu-coursework { margin-top: 12px; }
+  .edu-coursework-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #bbb; margin-bottom: 6px; }
+  .edu-coursework-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .edu-course-tag { font-size: 11px; font-weight: 500; padding: 3px 9px; background: #f7f7f7; color: #555; border-radius: 4px; border: 1px solid #ececec; }
+
+  @media (max-width: 700px) {
+    .back-link { padding: 20px 24px 0; }
+    .edu-card { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-name">Rexton Winarya</a>
+  <div class="nav-links">
+    <a href="work.html">Experience</a>
+    <a href="projects.html">Projects</a>
+    <a href="skills.html">Skills</a>
+    <a href="mailto:rextongabriel28@gmail.com" class="btn">Contact</a>
+  </div>
+</nav>
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="ticker-dot"></span>Tesla · Austin TX</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Transportation Investment Corp.</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Dorigo Systems Ltd.</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>University of British Columbia</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Manufacturing Engineering</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Expected May 2027</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Tesla · Austin TX</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Transportation Investment Corp.</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Dorigo Systems Ltd.</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>University of British Columbia</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Manufacturing Engineering</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Expected May 2027</div>
+  </div>
+</div>
+
+<div class="back-link"><a href="index.html">← Back to Home</a></div>
+
+<div class="section fade-in" id="experience">
+  <div class="section-label">Work Experience</div>
+  <h2>Driving impact through co-ops at Tesla, TI Corp, and Dorigo Systems.</h2>
+
+  <!-- Tesla -->
+  <div class="exp-card open" id="tesla">
+    <div class="exp-header" onclick="toggleExp(this)">
+      <div class="exp-logo">⚡</div>
+      <div class="exp-info">
+        <div class="company">Tesla</div>
+        <div class="role">Technical Project Management Intern</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-date">Jan 2026 – Present</div>
+        <div class="exp-loc">Austin, TX</div>
+      </div>
+      <span class="exp-chevron">▼</span>
+    </div>
+    <div class="exp-body">
+      <ul>
+        <li>Served as the central coordination hub for multi-million dollar mixing subsystem projects, orchestrating design reviews that brought together 30+ stakeholders spanning manufacturing engineering, supply chain, factory design, and quality assurance — synthesizing competing priorities into clear action items and ensuring every decision fed directly into the project schedule and budget baseline.</li>
+        <li>Built and maintained comprehensive project schedules in Microsoft Project for end-to-end mixing subsystem installations, decomposing each initiative into 85+ discrete tasks spanning design development, long-lead procurement, factory acceptance testing, and final commissioning; actively managed cross-team dependencies across 6 engineering disciplines to achieve a 90% on-time milestone completion rate.</li>
+        <li>Conducted in-depth systems-level analysis of mixing subsystem interfaces, mapping material flow patterns, utility routing, and factory layout constraints to uncover spatial optimization opportunities; proposed and implemented design changes that reduced equipment density in allocated factory floor space by 50%, freeing critical area for adjacent production equipment and maintenance access.</li>
+        <li>Led change management for 2 major project scope adjustments — one driven by equipment specification changes, the other by shifting factory layout requirements — facilitating rapid root-cause analysis sessions and delivering revised specifications, updated risk registers, and re-baselined schedules within 2-week turnaround windows.</li>
+        <li>Performed detailed 3D spatial analysis in Navisworks Simulate, importing federated factory models to review equipment positioning, piping routes, electrical conduit paths, and maintenance access envelopes; identified and resolved 3 critical design conflicts — including a collision between a mixing vessel and a structural column — before fabrication, avoiding costly rework and schedule delays.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TI Corp -->
+  <div class="exp-card" id="ticorp">
+    <div class="exp-header" onclick="toggleExp(this)">
+      <div class="exp-logo">🚇</div>
+      <div class="exp-info">
+        <div class="company">Transportation Investment Corporation</div>
+        <div class="role">Project Controls Coordinator / Scheduler</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-date">Jan 2025 – Aug 2025</div>
+        <div class="exp-loc">Vancouver, BC</div>
+      </div>
+      <span class="exp-chevron">▼</span>
+    </div>
+    <div class="exp-body">
+      <ul>
+        <li>Designed and built a robust multi-sheet Excel tracker for a $6B SkyTrain extension project, consolidating Earned Value Management (EVM) metrics — planned value, earned value, actual costs, SPI, and CPI — into a single dashboard; replaced a fragmented manual process and provided the project controls team with reliable programme health data for monthly executive reviews.</li>
+        <li>Developed an end-to-end Power BI budget tracking solution for a $4.2B Tunnel Replacement Project, connecting directly to cost data sources, automating variance calculations and accrual reporting, and publishing visual dashboards that allowed senior stakeholders to drill down to contract-level spending in real time; cut financial reporting preparation time by 50% and significantly improved cost transparency across programme teams.</li>
+        <li>Performed in-depth schedule analysis in Primavera P6 across multiple project schedules, comparing contractor-submitted baselines against actual progress to pinpoint critical path deviations, float erosion, and activity logic errors; presented structured variance reports and directly engaged contractors to align on recovery plans, reducing systemic schedule misalignment and delay risk exposure.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Dorigo -->
+  <div class="exp-card" id="dorigo">
+    <div class="exp-header" onclick="toggleExp(this)">
+      <div class="exp-logo">🔧</div>
+      <div class="exp-info">
+        <div class="company">Dorigo Systems Ltd.</div>
+        <div class="role">Manufacturing / Process Engineer</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-date">May 2024 – Dec 2024</div>
+        <div class="exp-loc">Vancouver, BC</div>
+      </div>
+      <span class="exp-chevron">▼</span>
+    </div>
+    <div class="exp-body">
+      <ul>
+        <li>Leveraged FactoryLogix MES to architect and deploy customized PCB assembly process flows, configuring work instructions, inspection checkpoints, and traveller routing to comply with ISO 13485 medical device quality standards; applied lean manufacturing and 5S principles, reducing non-value-added steps and yielding a 5% increase in overall production efficiency across active assembly lines.</li>
+        <li>Engineered a serialized component labelling system integrated with production tracking infrastructure, replacing a manual paper-based process with barcode-driven traceability; enabled operators to scan and log each PCB at every assembly stage, reducing manual transcription errors by 20% and providing quality engineers with complete genealogy data for root-cause investigations.</li>
+        <li>Conducted a structured Process FMEA for PCB assembly operations, systematically evaluating each process step to identify high-severity and high-occurrence failure modes — including solder paste deposition, component placement, and reflow — assigning RPN scores and developing targeted control actions that reduced quality escapes by 5%.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Thunderbikes -->
+  <div class="exp-card" id="thunderbikes">
+    <div class="exp-header" onclick="toggleExp(this)">
+      <div class="exp-logo">🏍️</div>
+      <div class="exp-info">
+        <div class="company">Thunderbikes — UBC Electric Motorbike Design Team</div>
+        <div class="role">Aerodynamic & Composite Team Member</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-date">Sep 2023 – Jun 2024</div>
+        <div class="exp-loc">Vancouver, BC</div>
+      </div>
+      <span class="exp-chevron">▼</span>
+    </div>
+    <div class="exp-body">
+      <ul>
+        <li>Fabricated production-quality motorcycle bodywork components using advanced composite manufacturing techniques including wet layup and vacuum infusion, carefully managing fibre orientation, resin mixing ratios, and cure schedules to produce lightweight, high-strength fairings and structural panels meeting the team's weight and stiffness targets.</li>
+        <li>Developed highly detailed parametric 3D models of the gas tank and battery enclosure mould in SolidWorks, building the geometry around packaging constraints from the electric powertrain, frame dimensions, and rider ergonomics; coordinated with structural and powertrain sub-teams to iterate rapidly and ensure fitment accuracy before committing to tooling fabrication.</li>
+        <li>Led aerodynamic analysis of motorcycle body components using ANSYS Fluent CFD simulations, setting up boundary conditions, mesh refinement zones, and turbulence models to evaluate drag and downforce across representative speed ranges; used outputs to guide fairing shape iterations, achieving a more streamlined external profile vs. the prior year's design.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SUBC -->
+  <div class="exp-card" id="subc">
+    <div class="exp-header" onclick="toggleExp(this)">
+      <div class="exp-logo">🤿</div>
+      <div class="exp-info">
+        <div class="company">SUBC — UBC Submarine Design Team</div>
+        <div class="role">Drivetrain Team Member</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-date">Sep 2022 – Sep 2023</div>
+        <div class="exp-loc">Vancouver, BC</div>
+      </div>
+      <span class="exp-chevron">▼</span>
+    </div>
+    <div class="exp-body">
+      <ul>
+        <li>Conceptualized, prototyped, and evaluated 3 distinct chain tensioner mechanism designs in response to persistent drivetrain instability; employed iterative CAD modelling and rapid fabrication to validate tensioning range, adjustability, and durability, ultimately selecting a solution that delivered a 25% reduction in chain derailment occurrences during competitive pool trials.</li>
+        <li>Collaborated within a 10-person composites sub-team to execute a 7-layer carbon fibre wet layup for a structurally critical submarine hull section, contributing to layup planning, fibre cutting, resin preparation, and vacuum bagging; disciplined process control resulted in a 20% reduction in delamination and void defects compared to the previous year.</li>
+        <li>Actively participated in pool testing cycles, systematically documenting drivetrain failure modes under real submergence conditions and implementing rapid design iterations on the chain drive and propulsion coupling — building hands-on design-test-fix experience in a competitive engineering environment.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="divider"><hr></div>
+
+<div class="section fade-in" id="education">
+  <div class="section-label">Education</div>
+  <h2>University of British Columbia</h2>
+  <div class="edu-card">
+    <div class="edu-logo">🎓</div>
+    <div>
+      <div class="edu-school">University of British Columbia</div>
+      <div class="edu-degree">Bachelor of Applied Science — Manufacturing Engineering</div>
+      <div class="edu-dates">Sep 2021 – May 2027 (Expected) · Vancouver, BC · Co-op program · 3 industry placements completed</div>
+      <div class="edu-coursework">
+        <div class="edu-coursework-label">Relevant Coursework</div>
+        <div class="edu-coursework-tags">
+          <span class="edu-course-tag">Manufacturing Processes</span>
+          <span class="edu-course-tag">CAD &amp; Manufacturing</span>
+          <span class="edu-course-tag">Engineering Materials</span>
+          <span class="edu-course-tag">Quality Management</span>
+          <span class="edu-course-tag">Product Design &amp; Development</span>
+          <span class="edu-course-tag">Lean Systems</span>
+          <span class="edu-course-tag">Project Management</span>
+          <span class="edu-course-tag">Robotics &amp; Automation</span>
+          <span class="edu-course-tag">Mechatronics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-copy">© 2026 Rexton Gabriel Winarya</div>
+  <div class="footer-links">
+    <a href="mailto:rextongabriel28@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/rgwinarya" target="_blank">LinkedIn</a>
+    <a href="tel:+12368662770">+1 (236) 866-2770</a>
+  </div>
+</footer>
+<script>
+  function toggleExp(header) { header.closest('.exp-card').classList.toggle('open'); }
+</script>
+<script>
+  const faders = document.querySelectorAll('.fade-in');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  faders.forEach(f => obs.observe(f));
+</script>
+</body>
+</html>
